@@ -9,7 +9,6 @@ function login() {
         // ✅ Save login state
         localStorage.setItem("loggedIn", "true");
 
-        alert("Login successful ✅");
 
         // ✅ Redirect
         window.location.href = "index.html";

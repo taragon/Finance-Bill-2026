@@ -24,15 +24,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         }
+
+        // Reapply colors after filtering
+        applyColors();
     });
 
-    // Apply colors when page loads
+    // Apply colors on page load
     applyColors();
 });
 
 
 // ======================
-// COLOR FUNCTION (FIXED)
+// COLOR FUNCTION
 // ======================
 function applyColors() {
     let rows = document.querySelectorAll("tbody tr");

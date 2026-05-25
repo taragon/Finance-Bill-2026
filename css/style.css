@@ -1,18 +1,27 @@
-/* General page styling */
+/* Page background */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f8;
-    margin: 20px;
+    margin: 0;
+    padding: 0;
 }
 
-/* Page title */
+/* ✅ Container (ADDED) */
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Title */
 h2 {
     text-align: center;
     color: #2c3e50;
+    margin-top: 20px;
 }
 
-/* Search input styling */
-#searchInput {
+/* ✅ Search Input (UPDATED) */
+input {
     display: block;
     margin: 20px auto;
     padding: 10px;
@@ -22,11 +31,10 @@ h2 {
     font-size: 14px;
 }
 
-/* Table container */
+/* Table styling */
 table {
     border-collapse: collapse;
-    width: 90%;
-    margin: auto;
+    width: 100%;
     background-color: #ffffff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -38,18 +46,16 @@ th {
     padding: 12px;
     text-transform: uppercase;
     font-size: 13px;
-    letter-spacing: 0.5px;
-    cursor: pointer; /* Shows clickable pointer for sorting */
+    cursor: pointer;
 }
 
 /* Table cells */
 td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    font-size: 14px;
 }
 
-/* Alternate row colors */
+/* Alternate row color */
 tr:nth-child(even) {
     background-color: #fafafa;
 }
@@ -57,22 +63,10 @@ tr:nth-child(even) {
 /* Hover effect */
 tr:hover {
     background-color: #f1f1f1;
-    transition: 0.3s;
 }
 
-/* First column (Section numbers) */
+/* First column styling */
 td:first-child {
     font-weight: bold;
     text-align: center;
-}
-
-/* Responsive design (mobile) */
-@media (max-width: 768px) {
-    table {
-        width: 100%;
-    }
-
-    #searchInput {
-        width: 90%;
-    }
 }

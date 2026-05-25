@@ -2,7 +2,8 @@
 if (localStorage.getItem("loggedIn") !== "true") {
     window.location.href = "login.html";
 }
-// ✅ STEP 2: DATA (ADDED AT TOP)
+
+// ✅ DATA
 const data = [
     { section: 1, tax: "Income Tax", old: "30%", newRate: "32%", desc: "Increase in income tax rates", impact: "Reduced take-home salary" },
     { section: 2, tax: "VAT (Value Added Tax)", old: "16%", newRate: "18%", desc: "VAT increased on most goods", impact: "Higher cost of living" },
@@ -17,10 +18,9 @@ const data = [
 ];
 
 
-// ✅ STEP 3: LOAD TABLE FUNCTION
+// ✅ LOAD TABLE
 function loadTable() {
     const tableBody = document.getElementById("tableBody");
-
     tableBody.innerHTML = "";
 
     data.forEach(item => {
@@ -34,7 +34,6 @@ function loadTable() {
                 <td>${item.impact}</td>
             </tr>
         `;
-
         tableBody.innerHTML += row;
     });
 }
@@ -43,34 +42,31 @@ function loadTable() {
 // ✅ MAIN SCRIPT
 document.addEventListener("DOMContentLoaded", function () {
 
-    // ✅ Load table FIRST
+    document.getElementById("welcomeUser").innerText = "Welcome, Admin ✅";
+
     loadTable();
 
     const input = document.getElementById("searchInput");
     const table = document.getElementById("financeTable");
 
-    // ======================
-    // SEARCH FUNCTION
-    // ======================
     input.addEventListener("keyup", function () {
         let filter = input.value.toUpperCase();
         let rows = table.getElementsByTagName("tr");
 
-        for (let i = 1; i < rows.length; i++) {   // ✅ fixed here
+        for (let i = 1; i < rows.length; i++) {
             let cell = rows[i].getElementsByTagName("td")[1];
 
             if (cell) {
                 let text = cell.innerText;
-
                 rows[i].style.display =
                     text.toUpperCase().includes(filter) ? "" : "none";
             }
         }
 
-        applyColors(); // ✅ reapply colors after filtering
+        applyColors();
     });
 
-    applyColors(); // ✅ apply colors when loaded
+    applyColors();
 });
 
 
@@ -82,22 +78,18 @@ function applyColors() {
         let oldText = row.cells[2].innerText;
         let newText = row.cells[3].innerText;
 
-        // ✅ REMOVE TEXT (KSh, %, etc.)
         let oldValue = parseFloat(oldText.replace(/[^\d.]/g, "")) || 0;
         let newValue = parseFloat(newText.replace(/[^\d.]/g, "")) || 0;
 
         row.style.backgroundColor = "";
 
         if (newValue > oldValue) {
-            row.style.backgroundColor = "#ffe6e6"; // 🔴 increase
+            row.style.backgroundColor = "#ffe6e6";
         } else if (newValue < oldValue) {
-            row.style.backgroundColor = "#e6ffe6"; // 🟢 decrease
-        } else {
-            row.style.backgroundColor = "#ffffff"; // ⚪ no change
+            row.style.backgroundColor = "#e6ffe6";
         }
     });
 }
-
 
 
 // ✅ SORT FUNCTION
@@ -110,4 +102,13 @@ function sortTable(col) {
     );
 
     rows.forEach(row => table.appendChild(row));
+}
+
+
+// ✅ LOGOUT FUNCTION (FIXED)
+function logout() {
+    localStorage.removeItem("loggedIn");
+    localStorage.removeItem("username");
+
+    window.location.href = "login.html";
 }

@@ -3,12 +3,13 @@ function login() {
     const password = document.getElementById("password").value.trim();
     const errorMsg = document.getElementById("errorMsg");
 
+    // ✅ FIXED HERE
     if (username === "admin" && password === "1234") {
 
         // ✅ Save login state
         localStorage.setItem("loggedIn", "true");
 
-        alert("Login successful ✅");  // ✅ Debug helper
+        alert("Login successful ✅");
 
         // ✅ Redirect
         window.location.href = "index.html";

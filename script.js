@@ -1,69 +1,58 @@
-// Wait until the page loads
+// Wait until the page fully loads
 document.addEventListener("DOMContentLoaded", function () {
 
     const input = document.getElementById("searchInput");
     const table = document.querySelector("table");
 
-    // Search / filter function
+    // ======================
+    // SEARCH FUNCTION
+    // ======================
     input.addEventListener("keyup", function () {
         let filter = input.value.toUpperCase();
         let rows = table.getElementsByTagName("tr");
 
         for (let i = 1; i < rows.length; i++) {
-            let cell = rows[i].getElementsByTagName("td")[1]; // Tax Type column
+            let cell = rows[i].getElementsByTagName("td")[1];
 
             if (cell) {
-                let text = cell.textContent || cell.innerText;
+                let text = cell.innerText;
 
-                if (text.toUpperCase().indexOf(filter) > -1) {
-                    rows[i].style.display = ""; // Show row
+                if (text.toUpperCase().includes(filter)) {
+                    rows[i].style.display = "";
                 } else {
-                    rows[i].style.display = "none"; // Hide row
+                    rows[i].style.display = "none";
                 }
             }
         }
     });
 
+    // Apply colors when page loads
+    applyColors();
 });
 
-// Sorting function
-function sortTable(columnIndex) {
 
-    const table = document.querySelector("table");
-    let switching = true;
-    let direction = "asc"; // ascending
+// ======================
+// COLOR FUNCTION (FIXED)
+// ======================
+function applyColors() {
+    let rows = document.querySelectorAll("tbody tr");
 
-    while (switching) {
-        switching = false;
-        let rows = table.rows;
+    rows.forEach(row => {
+        let oldRate = row.cells[2].innerText;
+        let newRate = row.cells[3].innerText;
 
-        for (let i = 1; i < rows.length - 1; i++) {
-            let shouldSwitch = false;
+        let oldValue = parseFloat(oldRate.replace(/[^\d.]/g, "")) || 0;
+        let newValue = parseFloat(newRate.replace(/[^\d.]/g, "")) || 0;
 
-            let x = rows[i].getElementsByTagName("td")[columnIndex];
-            let y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+        // Reset color first
+        row.style.backgroundColor = "";
 
-            if (direction === "asc") {
-                if (x.innerText.toLowerCase() > y.innerText.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
-                }
-            } else {
-                if (x.innerText.toLowerCase() < y.innerText.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-
-            if (shouldSwitch) {
-                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                switching = true;
-            } 
+        if (newValue > oldValue) {
+            row.style.backgroundColor = "#ffe6e6"; // 🔴 increase
+        } else if (newValue < oldValue) {
+            row.style.backgroundColor = "#e6ffe6"; // 🟢 decrease
+        } else {
+            row.style.backgroundColor = "#ffffff"; // ⚪ no change
         }
-
-        if (!switching && direction === "asc") {
-            direction = "desc";
-            switching = true;
-        }
-    }
+    });
 }

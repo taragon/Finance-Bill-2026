@@ -5,7 +5,7 @@ body {
     margin: 20px;
 }
 
-/* Title styling */
+/* Page title */
 h2 {
     text-align: center;
     color: #2c3e50;
@@ -39,6 +39,7 @@ th {
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 0.5px;
+    cursor: pointer; /* Shows clickable pointer for sorting */
 }
 
 /* Table cells */
@@ -65,7 +66,7 @@ td:first-child {
     text-align: center;
 }
 
-/* Make table responsive on small screens */
+/* Responsive design (mobile) */
 @media (max-width: 768px) {
     table {
         width: 100%;

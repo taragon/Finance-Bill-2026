@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Basic page setup -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title -->
     <title>Finance Bill 2026</title>
 
     <!-- Link to CSS file -->
@@ -11,9 +14,10 @@
 
 <body>
 
+    <!-- Page title -->
     <h2>📊 Finance Bill 2026 Table</h2>
 
-    <!-- Search Box -->
+    <!-- Search input -->
     <input 
         type="text" 
         id="searchInput" 
@@ -24,10 +28,11 @@
     <table>
         <thead>
             <tr>
-                <th>Section</th>
-                <th>Tax Type</th>
-                <th>Old Rate</th>
-                <th>New Rate</th>
+                <!-- Clickable headers for sorting -->
+                <th onclick="sortTable(0)">Section ⬍</th>
+                <th onclick="sortTable(1)">Tax Type ⬍</th>
+                <th onclick="sortTable(2)">Old Rate ⬍</th>
+                <th onclick="sortTable(3)">New Rate ⬍</th>
                 <th>Description</th>
                 <th>Impact on Citizens</th>
             </tr>
@@ -49,6 +54,9 @@
 
     <!-- Link to JavaScript file -->
     <script src="script.js"></script>
+
+</body>
+</html>
 
 </body>
 </html>

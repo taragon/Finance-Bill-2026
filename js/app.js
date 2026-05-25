@@ -1,3 +1,7 @@
+// ✅ Check if user is logged in
+if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login.html";
+}
 // ✅ STEP 2: DATA (ADDED AT TOP)
 const data = [
     { section: 1, tax: "Income Tax", old: "30%", newRate: "32%", desc: "Increase in income tax rates", impact: "Reduced take-home salary" },
